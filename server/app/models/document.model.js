@@ -14,40 +14,32 @@ Document.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    studentsCount: {
+    size: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    startAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    finishAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    teacherId: {
-      type: DataTypes.UUID,
-      allowNull: false,
-    },
-    subject: {
-      type: DataTypes.STRING,
       allowNull: false,
     },
     duration: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    courseId: {
-      type: DataTypes.UUID,
+    type: {
+      type: DataTypes.ENUM("Video", "PDF", "Voice"),
       allowNull: false,
     },
-    teacherName: {
+    uploadedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    subject: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    sections: {
+      type: DataTypes.JSON,
+      allowNull: false,
+    },
+    courseId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
   },

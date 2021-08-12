@@ -1,16 +1,13 @@
-const Document = require("../models/document.model");
+const Exam = require("../models/exam.model");
 
 exports.createService = async (body, params) => {
   try {
-    let query = Document.build({
+    let query = Exam.build({
       name: body.name,
-      size: body.size,
-      courseId: body.courseId,
-      duration: body.duration,
-      uploadedAt: body.uploadedAt,
-      type: body.type,
-      subject: body.subject,
-      sections: body.sections,
+      finishAt: body.finishAt,
+      startAt: body.startAt,
+      studentDidPass: body.studentDidPass,
+      score: body.score,
     });
     return await query.save();
   } catch (err) {
@@ -20,9 +17,9 @@ exports.createService = async (body, params) => {
 
 exports.getService = async (params) => {
   try {
-    let query = Document.findOne({
+    let query = Exam.findOne({
       where: {
-        documentId: params.id,
+        examId: params.id,
       },
     });
     return await query;
@@ -33,7 +30,7 @@ exports.getService = async (params) => {
 
 exports.getAllService = async () => {
   try {
-    let query = Document.findAll();
+    let query = Exam.findAll();
     return await query;
   } catch (err) {
     throw err;
@@ -42,20 +39,17 @@ exports.getAllService = async () => {
 
 exports.updateService = async (body, params) => {
   try {
-    let query = Document.update(
+    let query = Exam.update(
       {
         name: body.name,
-        size: body.size,
-        courseId: body.courseId,
-        duration: body.duration,
-        uploadedAt: body.uploadedAt,
-        type: body.type,
-        subject: body.subject,
-        sections: body.sections,
+        finishAt: body.finishAt,
+        startAt: body.startAt,
+        studentDidPass: body.studentDidPass,
+        score: body.score,
       },
       {
         where: {
-          documentId: params.id,
+          examId: params.id,
         },
       }
     );
@@ -67,9 +61,9 @@ exports.updateService = async (body, params) => {
 
 exports.deleteService = async (params) => {
   try {
-    let query = Document.destroy({
+    let query = Exam.destroy({
       where: {
-        documentId: params.id,
+        examId: params.id,
       },
     });
     return await query;

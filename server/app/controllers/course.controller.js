@@ -48,7 +48,7 @@ exports.createCourse = async (req, res) => {
     });
   } catch (err) {
     res.json({
-      state: "error",
+      status: "error",
       message: err,
     });
   }

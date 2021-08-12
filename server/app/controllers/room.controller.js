@@ -4,9 +4,9 @@ const {
   getService,
   deleteService,
   updateService,
-} = require("../services/document.service");
+} = require("../services/room.service");
 
-exports.getDocument = async (req, res) => {
+exports.getRoom = async (req, res) => {
   try {
     let query = getService(req.params);
     res.status(200).json({
@@ -14,10 +14,10 @@ exports.getDocument = async (req, res) => {
       message: await query,
     });
   } catch (err) {
-    console.log(err);
     res.json({
       status: "error",
-      message: err,
+      message: err.message,
+      stack: err.stack,
     });
   }
 };
@@ -30,15 +30,15 @@ exports.getAll = async (req, res) => {
       message: await query,
     });
   } catch (err) {
-    console.log(err);
     res.json({
       status: "error",
-      message: err,
+      message: err.message,
+      stack: err.stack,
     });
   }
 };
 
-exports.createDocument = async (req, res) => {
+exports.createRoom = async (req, res) => {
   try {
     let query = createService(req.body, req.param);
     await query;
@@ -48,13 +48,14 @@ exports.createDocument = async (req, res) => {
     });
   } catch (err) {
     res.json({
-      state: "error",
-      message: err,
+      status: "error",
+      message: err.message,
+      stack: err.stack,
     });
   }
 };
 
-exports.updateDocument = async (req, res) => {
+exports.updateRoom = async (req, res) => {
   try {
     let query = updateService(req.body, req.params);
     await query;
@@ -64,13 +65,14 @@ exports.updateDocument = async (req, res) => {
     });
   } catch (err) {
     res.json({
-      state: "error",
-      message: err,
+      status: "error",
+      message: err.message,
+      stack: err.stack,
     });
   }
 };
 
-exports.deleteDocument = async (req, res) => {
+exports.deleteRoom = async (req, res) => {
   try {
     let query = deleteService(req.params);
     await query;
@@ -80,8 +82,9 @@ exports.deleteDocument = async (req, res) => {
     });
   } catch (err) {
     res.json({
-      state: "error",
-      message: err,
+      status: "error",
+      message: err.message,
+      stack: err.stack,
     });
   }
 };

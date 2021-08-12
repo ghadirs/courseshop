@@ -1,16 +1,12 @@
-const Document = require("../models/document.model");
+const Room = require("../models/room.model");
 
 exports.createService = async (body, params) => {
   try {
-    let query = Document.build({
+    let query = Room.build({
       name: body.name,
-      size: body.size,
-      courseId: body.courseId,
-      duration: body.duration,
-      uploadedAt: body.uploadedAt,
-      type: body.type,
-      subject: body.subject,
-      sections: body.sections,
+      partipicants: body.partipicants,
+      description: body.description,
+      partipicantsCount: body.partipicantsCount,
     });
     return await query.save();
   } catch (err) {
@@ -20,9 +16,9 @@ exports.createService = async (body, params) => {
 
 exports.getService = async (params) => {
   try {
-    let query = Document.findOne({
+    let query = Room.findOne({
       where: {
-        documentId: params.id,
+        roomId: params.id,
       },
     });
     return await query;
@@ -33,7 +29,7 @@ exports.getService = async (params) => {
 
 exports.getAllService = async () => {
   try {
-    let query = Document.findAll();
+    let query = Room.findAll();
     return await query;
   } catch (err) {
     throw err;
@@ -42,20 +38,16 @@ exports.getAllService = async () => {
 
 exports.updateService = async (body, params) => {
   try {
-    let query = Document.update(
+    let query = Room.update(
       {
         name: body.name,
-        size: body.size,
-        courseId: body.courseId,
-        duration: body.duration,
-        uploadedAt: body.uploadedAt,
-        type: body.type,
-        subject: body.subject,
-        sections: body.sections,
+        partipicants: body.partipicants,
+        description: body.description,
+        partipicantsCount: body.partipicantsCount,
       },
       {
         where: {
-          documentId: params.id,
+          roomId: params.id,
         },
       }
     );
@@ -67,9 +59,9 @@ exports.updateService = async (body, params) => {
 
 exports.deleteService = async (params) => {
   try {
-    let query = Document.destroy({
+    let query = Room.destroy({
       where: {
-        documentId: params.id,
+        roomId: params.id,
       },
     });
     return await query;

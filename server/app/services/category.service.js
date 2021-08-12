@@ -1,16 +1,12 @@
-const Document = require("../models/document.model");
+const Category = require("../models/category.model");
 
 exports.createService = async (body, params) => {
   try {
-    let query = Document.build({
+    let query = Category.build({
       name: body.name,
-      size: body.size,
-      courseId: body.courseId,
-      duration: body.duration,
-      uploadedAt: body.uploadedAt,
-      type: body.type,
-      subject: body.subject,
-      sections: body.sections,
+      description: body.description,
+      courses: body.courses,
+      teachers: body.teachers,
     });
     return await query.save();
   } catch (err) {
@@ -20,9 +16,9 @@ exports.createService = async (body, params) => {
 
 exports.getService = async (params) => {
   try {
-    let query = Document.findOne({
+    let query = Category.findOne({
       where: {
-        documentId: params.id,
+        categoryId: params.id,
       },
     });
     return await query;
@@ -33,7 +29,7 @@ exports.getService = async (params) => {
 
 exports.getAllService = async () => {
   try {
-    let query = Document.findAll();
+    let query = Category.findAll();
     return await query;
   } catch (err) {
     throw err;
@@ -42,20 +38,16 @@ exports.getAllService = async () => {
 
 exports.updateService = async (body, params) => {
   try {
-    let query = Document.update(
+    let query = Category.update(
       {
         name: body.name,
-        size: body.size,
-        courseId: body.courseId,
-        duration: body.duration,
-        uploadedAt: body.uploadedAt,
-        type: body.type,
-        subject: body.subject,
-        sections: body.sections,
+        description: body.description,
+        courses: body.courses,
+        teachers: body.teachers,
       },
       {
         where: {
-          documentId: params.id,
+          categoryId: params.id,
         },
       }
     );
@@ -67,9 +59,9 @@ exports.updateService = async (body, params) => {
 
 exports.deleteService = async (params) => {
   try {
-    let query = Document.destroy({
+    let query = Category.destroy({
       where: {
-        documentId: params.id,
+        categoryId: params.id,
       },
     });
     return await query;
