@@ -51,9 +51,7 @@ exports.updateService = async (body, params) => {
         phone: body.phone,
         address: body.address,
         loginStatus: body.loginStatus,
-        role: body.role,
         accountStatus: body.accountStatus,
-        nationalId: body.nationalId,
       },
       {
         where: {

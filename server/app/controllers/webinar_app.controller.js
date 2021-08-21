@@ -6,7 +6,7 @@ const {
   updateService,
 } = require("../services/webinar.service");
 
-exports.getWebinar = async (req, res) => {
+exports.getWebinarApp = async (req, res) => {
   try {
     let query = getService(req.params);
     res.json({
@@ -38,24 +38,24 @@ exports.getAll = async (req, res) => {
   }
 };
 
-exports.createWebinar = async (req, res) => {
-  try {
-    let query = createService(req.body, req.param);
-    await query;
+// exports.createWebinarApp = async (req, res) => {
+//   try {
+//     let query = createService(req.body, req.param);
+//     await query;
     
-    res.json({
-      status: "success",
-      message: "done",
-    });
-  } catch (err) {
-    res.json({
-      state: "error",
-      message: err,
-    });
-  }
-};
+//     res.json({
+//       status: "success",
+//       message: "done",
+//     });
+//   } catch (err) {
+//     res.json({
+//       state: "error",
+//       message: err,
+//     });
+//   }
+// };
 
-exports.updateWebinar = async (req, res) => {
+exports.updateWebinarApp = async (req, res) => {
   try {
     let query = updateService(req.body, req.params);
     await query;
@@ -71,7 +71,7 @@ exports.updateWebinar = async (req, res) => {
   }
 };
 
-exports.deleteWebinar = async (req, res) => {
+exports.deleteWebinarApp = async (req, res) => {
   try {
     let query = deleteService(req.params);
     await query;

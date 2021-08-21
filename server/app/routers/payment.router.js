@@ -1,6 +1,7 @@
 const express = require("express");
 const Router = express.Router();
 
+// const { customerCheck } = require("../auth/customerCheck");
 const {
   getPayment,
   createPayment,

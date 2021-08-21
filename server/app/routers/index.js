@@ -15,7 +15,8 @@ module.exports = (app) => {
     require("./exam.router"),
     require("./shopping_card.router"),
     require("./payment.router"),
-    require("./order.router")
+    require("./order.router"),
+    require("./purchase_account.router")
     // require("./line_item.router")
   );
 };

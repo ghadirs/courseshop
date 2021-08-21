@@ -1,13 +1,13 @@
-const Category = require("../models/category.model");
+const UserChat = require("../models/user_chat.model");
 
 exports.createService = async (body, params) => {
   try {
-    let query = Category.build({
+    let query = UserChat.build({
+      userChatId: body.userChatId,
+      chatId: body.chatId,
+      userId: body.userId,
       name: body.name,
-      courses: body.courses,
-      teachers: body.teachers,
-      parent: body.parent,
-      child: body.child,
+      description: body.description,
     });
     return await query.save();
   } catch (err) {
@@ -17,9 +17,9 @@ exports.createService = async (body, params) => {
 
 exports.getService = async (params) => {
   try {
-    let query = Category.findOne({
+    let query = UserChat.findOne({
       where: {
-        categoryId: params.id,
+        user_chatId: params.id,
       },
     });
     return await query;
@@ -30,7 +30,7 @@ exports.getService = async (params) => {
 
 exports.getAllService = async () => {
   try {
-    let query = Category.findAll();
+    let query = UserChat.findAll();
     return await query;
   } catch (err) {
     throw err;
@@ -39,17 +39,16 @@ exports.getAllService = async () => {
 
 exports.updateService = async (body, params) => {
   try {
-    let query = Category.update(
+    let query = UserChat.update(
       {
-        name: body.name,
-        courses: body.courses,
-        teachers: body.teachers,
-        parent: body.parent,
-        child: body.child,
+        billingAddress: body.billingAddress,
+        isClosed: body.isClosed,
+        open: body.open,
+        closed: body.closed,
       },
       {
         where: {
-          categoryId: params.id,
+          user_chatId: params.id,
         },
       }
     );
@@ -61,9 +60,9 @@ exports.updateService = async (body, params) => {
 
 exports.deleteService = async (params) => {
   try {
-    let query = Category.destroy({
+    let query = UserChat.destroy({
       where: {
-        categoryId: params.id,
+        user_chatId: params.id,
       },
     });
     return await query;

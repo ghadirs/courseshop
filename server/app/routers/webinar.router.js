@@ -1,6 +1,7 @@
 const express = require("express");
 const Router = express.Router();
 
+const { checkRole } = require("../auth/checkRole");
 const {
   getWebinar,
   createWebinar,
@@ -13,7 +14,7 @@ Router.route("/webinars/get_webinar/:id").get(getWebinar);
 
 Router.route("/webinars/create_webinar").post(createWebinar);
 
-Router.route("/webinars/get_all").get(getAll);
+// Router.route("/webinars/get_all").get(getAll);
 
 Router.route("/webinars/update_webinar/:id").put(updateWebinar);
 

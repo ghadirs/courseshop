@@ -1,13 +1,14 @@
-const Category = require("../models/category.model");
+const WebinarApp = require("../models/webinar_app.model");
 
 exports.createService = async (body, params) => {
   try {
-    let query = Category.build({
-      name: body.name,
-      courses: body.courses,
-      teachers: body.teachers,
-      parent: body.parent,
-      child: body.child,
+    let query = WebinarApp.build({
+      teacherId: body.teacherId,
+      courseId: body.courseId,
+      documentId: body.documentId,
+      open: body.open,
+      closed: body.closed,
+      appStatus: "pending",
     });
     return await query.save();
   } catch (err) {
@@ -17,9 +18,9 @@ exports.createService = async (body, params) => {
 
 exports.getService = async (params) => {
   try {
-    let query = Category.findOne({
+    let query = WebinarApp.findOne({
       where: {
-        categoryId: params.id,
+        webinarAppId: params.id,
       },
     });
     return await query;
@@ -30,7 +31,7 @@ exports.getService = async (params) => {
 
 exports.getAllService = async () => {
   try {
-    let query = Category.findAll();
+    let query = WebinarApp.findAll();
     return await query;
   } catch (err) {
     throw err;
@@ -39,17 +40,18 @@ exports.getAllService = async () => {
 
 exports.updateService = async (body, params) => {
   try {
-    let query = Category.update(
+    let query = WebinarApp.update(
       {
-        name: body.name,
-        courses: body.courses,
-        teachers: body.teachers,
-        parent: body.parent,
-        child: body.child,
+        teacherId: body.teacherId,
+        courseId: body.courseId,
+        documentId: body.documentId,
+        open: body.open,
+        closed: body.closed,
+        appStatus: "pending",
       },
       {
         where: {
-          categoryId: params.id,
+          webinarAppId: params.id,
         },
       }
     );
@@ -61,9 +63,9 @@ exports.updateService = async (body, params) => {
 
 exports.deleteService = async (params) => {
   try {
-    let query = Category.destroy({
+    let query = WebinarApp.destroy({
       where: {
-        categoryId: params.id,
+        webinarAppId: params.id,
       },
     });
     return await query;

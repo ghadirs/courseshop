@@ -1,13 +1,12 @@
-const Category = require("../models/category.model");
+const PurchaseAccount = require("../models/purchase_account.model");
 
 exports.createService = async (body, params) => {
   try {
-    let query = Category.build({
-      name: body.name,
-      courses: body.courses,
-      teachers: body.teachers,
-      parent: body.parent,
-      child: body.child,
+    let query = PurchaseAccount.build({
+      billingAddress: body.billingAddress,
+      isClosed: body.isClosed,
+      open: body.open,
+      closed: body.closed,
     });
     return await query.save();
   } catch (err) {
@@ -17,9 +16,9 @@ exports.createService = async (body, params) => {
 
 exports.getService = async (params) => {
   try {
-    let query = Category.findOne({
+    let query = PurchaseAccount.findOne({
       where: {
-        categoryId: params.id,
+        purchase_accountId: params.id,
       },
     });
     return await query;
@@ -30,7 +29,7 @@ exports.getService = async (params) => {
 
 exports.getAllService = async () => {
   try {
-    let query = Category.findAll();
+    let query = PurchaseAccount.findAll();
     return await query;
   } catch (err) {
     throw err;
@@ -39,17 +38,16 @@ exports.getAllService = async () => {
 
 exports.updateService = async (body, params) => {
   try {
-    let query = Category.update(
+    let query = PurchaseAccount.update(
       {
-        name: body.name,
-        courses: body.courses,
-        teachers: body.teachers,
-        parent: body.parent,
-        child: body.child,
+        billingAddress: body.billingAddress,
+        isClosed: body.isClosed,
+        open: body.open,
+        closed: body.closed,
       },
       {
         where: {
-          categoryId: params.id,
+          purchase_accountId: params.id,
         },
       }
     );
@@ -61,9 +59,9 @@ exports.updateService = async (body, params) => {
 
 exports.deleteService = async (params) => {
   try {
-    let query = Category.destroy({
+    let query = PurchaseAccount.destroy({
       where: {
-        categoryId: params.id,
+        purchase_accountId: params.id,
       },
     });
     return await query;

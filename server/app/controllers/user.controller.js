@@ -22,21 +22,21 @@ exports.getUser = async (req, res) => {
   }
 };
 
-exports.getAll = async (req, res) => {
-  try {
-    let query = getAllService();
-    res.status(200).json({
-      status: "success",
-      message: await query,
-    });
-  } catch (err) {
-    res.json({
-      status: "error",
-      message: err.message,
-      stack: err.stack,
-    });
-  }
-};
+// exports.getAll = async (req, res) => {
+//   try {
+//     let query = getAllService();
+//     res.status(200).json({
+//       status: "success",
+//       message: await query,
+//     });
+//   } catch (err) {
+//     res.json({
+//       status: "error",
+//       message: err.message,
+//       stack: err.stack,
+//     });
+//   }
+// };
 
 exports.createUser = async (req, res) => {
   try {

@@ -1,6 +1,7 @@
 const express = require("express");
 const Router = express.Router();
 
+const { checkRole } = require("../auth/checkRole");
 const {
   getAdmin,
   createAdmin,

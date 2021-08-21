@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Sequelize, Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
 class Category extends Model {}
@@ -14,10 +14,6 @@ Category.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     courses: {
       type: DataTypes.ARRAY(DataTypes.UUID),
       allowNull: false,
@@ -25,6 +21,14 @@ Category.init(
     teachers: {
       type: DataTypes.ARRAY(DataTypes.UUID),
       allowNull: false,
+    },
+    parent: {
+      type: DataTypes.STRING,
+      defaultValue: "root",
+    },
+    child: {
+      type: DataTypes.UUID,
+      defaultValue: null,
     },
   },
   {

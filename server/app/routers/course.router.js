@@ -9,14 +9,14 @@ const {
   getAll,
 } = require("../controllers/course.controller");
 
-Router.route("/users/get_course/:id").get(getCourse);
+Router.route("/courses/get_course/:id").get(getCourse);
 
-Router.route("/users/create_course").post(createCourse);
+Router.route("/courses/create_course").post(createCourse);
 
-Router.route("/users/get_all").get(getAll);
+Router.route("/courses/get_all").get(getAll);
 
-Router.route("/users/update_course/:id").put(updateCourse);
+Router.route("/courses/update_course/:id").put(updateCourse);
 
-Router.route("/users/delete_course/:id").delete(deleteCourse);
+Router.route("/courses/delete_course/:id").delete(deleteCourse);
 
 module.exports = Router;

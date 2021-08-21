@@ -1,49 +1,49 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
-class User extends Model {}
+class DocumentApp extends Model {}
 
-User.init(
+DocumentApp.init(
   {
-    userId: {
+    documentAppId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    courseId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
-    password: {
-      type: DataTypes.STRING,
+    teacherId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
+    documentId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
-    phone: {
-      type: DataTypes.INTEGER,
+    open: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
-    address: {
-      type: DataTypes.STRING,
+    closed: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
-    isLoggedIn: {
+    didApprove: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    accountStatus: {
-      type: DataTypes.ENUM("banned", "active", "deleted", "new"),
+    appStatus: {
+      type: DataTypes.JSON,
       allowNull: false,
     },
   },
   {
     sequelize,
-    schema: "user",
-    tableName: "user",
+    schema: "course",
+    tableName: "documentApp",
   }
 );
 
-module.exports = User;
+module.exports = DocumentApp;

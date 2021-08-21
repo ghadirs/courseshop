@@ -24,10 +24,41 @@ exports.getCategory = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    let query = getAllService();
+    const allCategories = await getAllService();
+
+    const partial = (arr = [], condition) => {
+      const result = [];
+      for (let i = 0; i < arr.length; i++) {
+        if (condition(arr[i])) {
+          result.push(arr[i]);
+        }
+      }
+      return result;
+    };
+
+    const findNodes = (parentKey, items) => {
+      let subItems = partial(items, (n) => n.dataValues.parent === parentKey); // return console.log(parentKey)
+      // console.log(items)
+      const result = [];
+      for (let i = 0; i < subItems.length; i++) {
+        let subItem = subItems[i];
+        let resultItem = {
+          name: subItem.dataValues.name,
+          parent: subItem.dataValues.parent,
+          child: subItem.dataValues.child,
+        };
+        let kids = findNodes(subItem.dataValues.child, items);
+        if (kids.length) {
+          resultItem.children = kids;
+        }
+        result.push(resultItem);
+      }
+      return result;
+    };
+
     res.status(200).json({
       status: "success",
-      message: await query,
+      message: findNodes("root", allCategories),
     });
   } catch (err) {
     res.json({
